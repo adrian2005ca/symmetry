@@ -10,33 +10,32 @@
 #include <stdexcept>
 
 /**
-  @brief Generator class for the metric polytope.
-  
-  @class MetricFacetList
-  
-  Generates a matrix containing a facet list for the polytope of n dimensions
-  and can provide a pointer to the matrix.
-  */
+ *  @brief Generator class for the metric polytope.
+ *  @class MetricFacetList
+ *
+ *  Generates a matrix containing a facet list for the polytope of n dimensions
+ *  and can provide a pointer to the matrix.
+ */
 class MetricFacetList
 {
 public:
 
   /**
-    Used to initialize boost matrix to contain all possible facets.
-    */
+   *  Used to initialize boost matrix to contain all possible facets.
+   */
   explicit MetricFacetList(int nDimensions);
 
   /**
-    Returns a POINTER to the the boost matrix that 
-    is created at initialization.
-    
-    @method  getPointer()
-    @return  [ boost::numeric::ublas::matrix<int>*]  Pointer to facet matrix
-    
-    WARNING: may cause dangling pointer, do not use past expiration!
-
-    @see  MetricFacetList(int nDimensions)
-    */
+   *  Returns a POINTER to the the boost matrix that 
+   *  is created at initialization.
+   *
+   *  @method  getPointer()
+   *  @return  [ boost::numeric::ublas::matrix<int>*]  Pointer to facet matrix
+   *
+   *  WARNING: may cause dangling pointer, do not use past expiration!
+   *
+   *  @see  MetricFacetList(int nDimensions)
+   */
   boost::numeric::ublas::matrix<int>* getPointer(){return &facetList_;}
 
 private:
