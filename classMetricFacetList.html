@@ -65,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="MetricFacetList" -->
-<p>Generator class for the metric polytope.  
+<p>Generator class for the metric polytope.Generates a matrix containing a facet list for the polytope of n dimensions and can provide a pointer to the matrix.  
  <a href="classMetricFacetList.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>&gt;</code></p>
@@ -77,10 +77,10 @@ Public Member Functions</h2></td></tr>
 &lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetricFacetList.html#aa750be5e716d3e2475b00850e98cb709">getPointer</a> ()</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Generator class for the metric polytope. </p>
+<div class="textblock"><p>Generator class for the metric polytope.</p>
 <p>Generates a matrix containing a facet list for the polytope of n dimensions and can provide a pointer to the matrix. </p>
 
-<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00020">20</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
+<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00019">19</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="abaffaa45b44faa8ddfc0b186ebc991c4"></a><!-- doxytag: member="MetricFacetList::MetricFacetList" ref="abaffaa45b44faa8ddfc0b186ebc991c4" args="(int nDimensions)" -->
 <div class="memitem">
@@ -117,19 +117,19 @@ Public Member Functions</h2></td></tr>
 <div class="fragment"><pre class="fragment">                                               {
 
   <span class="comment">/*</span>
-<span class="comment">    throw out any input that is less than MIN_DIMENSION(always 3) and</span>
-<span class="comment">    MAX_DIMENSION which is by default is set to 12, see MetricFacetList.h.</span>
-<span class="comment">    the reason 12 is chosen is because 12! will not overflow stored as int.</span>
-<span class="comment">    */</span>
+<span class="comment">   * throw out any input that is less than MIN_DIMENSION(always 3) and</span>
+<span class="comment">   * MAX_DIMENSION which is by default is set to 12, see MetricFacetList.h.</span>
+<span class="comment">   * the reason 12 is chosen is because 12! will not overflow stored as int.</span>
+<span class="comment">   */</span>
   
   <span class="keywordflow">if</span>(nDimensions &lt; MIN_DIMENSION || nDimensions &gt; <a class="code" href="MetricFacetList_8h.html#a776947deb6cf27cbd4faf91e0d60ff49" title="12! will not overflow int">MAX_DIMENSION</a>){
     <span class="keywordflow">throw</span> std::out_of_range(<span class="stringliteral">&quot;Dimensions for the metric polytope are minimum&quot;</span> 
     <span class="stringliteral">&quot; 3 to MAX_DIMENSION(overflow)&quot;</span>);}
 
   <span class="comment">/*</span>
-<span class="comment">    using the factorial function, it calculates the size of our matrix and</span>
-<span class="comment">    initializes it to 0</span>
-<span class="comment">    */</span>
+<span class="comment">   * using the factorial function, it calculates the size of our matrix and</span>
+<span class="comment">   * initializes it to 0</span>
+<span class="comment">   */</span>
   <span class="keywordtype">int</span> nFacets = 4 * factorial(nDimensions) / (6 * factorial(nDimensions - 3) );
   facetList_ = zero_matrix&lt;int&gt;(nFacets, nDimensions);
   
@@ -138,11 +138,11 @@ Public Member Functions</h2></td></tr>
   <span class="keywordtype">int</span> currentFacet = 0;<span class="comment">// stores number of facets computed</span>
 
   <span class="comment">/*</span>
-<span class="comment">    loops over all possible position choices in order, </span>
-<span class="comment">    innermost loop is over possible -1 positions</span>
-<span class="comment">    possible -1 positions include the NULL position and the already nonzero </span>
-<span class="comment">    max one -1 per row  positions on the row</span>
-<span class="comment">    */</span>
+<span class="comment">   * loops over all possible position choices in order, </span>
+<span class="comment">   * innermost loop is over possible -1 positions</span>
+<span class="comment">   * possible -1 positions include the NULL position and the already nonzero </span>
+<span class="comment">   * max one -1 per row  positions on the row</span>
+<span class="comment">   */</span>
 
   <span class="keywordflow">for</span>(index[0] = 0; index[0] &lt; nDimensions - 2; ++index[0]){
     <span class="keywordflow">for</span>(index[1] = index[0] + 1; index[1] &lt; nDimensions - 1; ++index[1]){
@@ -191,7 +191,7 @@ Public Member Functions</h2></td></tr>
 <p>WARNING: may cause dangling pointer, do not use past expiration!</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMetricFacetList.html#abaffaa45b44faa8ddfc0b186ebc991c4">MetricFacetList(int nDimensions)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00040">40</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
+<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00039">39</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
 <div class="fragment"><pre class="fragment">{<span class="keywordflow">return</span> &amp;facetList_;}
 </pre></div>
 </div>
@@ -215,7 +215,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 18 2011 17:36:02 for symmetry by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 18 2011 19:31:45 for symmetry by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

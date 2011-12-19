@@ -71,32 +71,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00009"></a>00009 
 <a name="l00010"></a>00010 <span class="preprocessor">#include &lt;stdexcept&gt;</span>
 <a name="l00011"></a>00011 
-<a name="l00020"></a><a class="code" href="classMetricFacetList.html">00020</a> <span class="keyword">class </span><a class="code" href="classMetricFacetList.html" title="Generator class for the metric polytope.">MetricFacetList</a>
-<a name="l00021"></a>00021 {
-<a name="l00022"></a>00022 <span class="keyword">public</span>:
-<a name="l00023"></a>00023 
-<a name="l00027"></a>00027   <span class="keyword">explicit</span> <a class="code" href="classMetricFacetList.html" title="Generator class for the metric polytope.">MetricFacetList</a>(<span class="keywordtype">int</span> nDimensions);
-<a name="l00028"></a>00028 
-<a name="l00040"></a><a class="code" href="classMetricFacetList.html#aa750be5e716d3e2475b00850e98cb709">00040</a>   boost::numeric::ublas::matrix&lt;int&gt;* <a class="code" href="classMetricFacetList.html#aa750be5e716d3e2475b00850e98cb709">getPointer</a>(){<span class="keywordflow">return</span> &amp;facetList_;}
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="keyword">private</span>:
-<a name="l00043"></a>00043   <span class="comment">// Private default initializer</span>
-<a name="l00044"></a>00044   <a class="code" href="classMetricFacetList.html" title="Generator class for the metric polytope.">MetricFacetList</a>(){} 
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046   <span class="comment">// Simple lazy factorial computation function</span>
-<a name="l00047"></a>00047   <span class="comment">// OVERFLOW if value &gt; 12</span>
-<a name="l00048"></a>00048   <span class="keywordtype">int</span> factorial(<span class="keywordtype">int</span> value){
-<a name="l00049"></a>00049     <span class="keywordtype">int</span> result = 1;
-<a name="l00050"></a>00050     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt;= value; i++){result *= i;}
-<a name="l00051"></a>00051     <span class="keywordflow">return</span> result;
-<a name="l00052"></a>00052   }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054   <span class="comment">// Holds the matrix of possible facets</span>
-<a name="l00055"></a>00055   boost::numeric::ublas::matrix&lt;int&gt; facetList_; 
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 };
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 <span class="preprocessor">#endif //SYMMETRY_GENERATORS_METRICFACETLIST_H</span>
+<a name="l00019"></a><a class="code" href="classMetricFacetList.html">00019</a> <span class="keyword">class </span><a class="code" href="classMetricFacetList.html" title="Generator class for the metric polytope.Generates a matrix containing a facet list for the polytope o...">MetricFacetList</a>
+<a name="l00020"></a>00020 {
+<a name="l00021"></a>00021 <span class="keyword">public</span>:
+<a name="l00022"></a>00022 
+<a name="l00026"></a>00026   <span class="keyword">explicit</span> <a class="code" href="classMetricFacetList.html" title="Generator class for the metric polytope.Generates a matrix containing a facet list for the polytope o...">MetricFacetList</a>(<span class="keywordtype">int</span> nDimensions);
+<a name="l00027"></a>00027 
+<a name="l00039"></a><a class="code" href="classMetricFacetList.html#aa750be5e716d3e2475b00850e98cb709">00039</a>   boost::numeric::ublas::matrix&lt;int&gt;* <a class="code" href="classMetricFacetList.html#aa750be5e716d3e2475b00850e98cb709">getPointer</a>(){<span class="keywordflow">return</span> &amp;facetList_;}
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 <span class="keyword">private</span>:
+<a name="l00042"></a>00042   <span class="comment">// Private default initializer</span>
+<a name="l00043"></a>00043   <a class="code" href="classMetricFacetList.html" title="Generator class for the metric polytope.Generates a matrix containing a facet list for the polytope o...">MetricFacetList</a>(){} 
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045   <span class="comment">// Simple lazy factorial computation function</span>
+<a name="l00046"></a>00046   <span class="comment">// OVERFLOW if value &gt; 12</span>
+<a name="l00047"></a>00047   <span class="keywordtype">int</span> factorial(<span class="keywordtype">int</span> value){
+<a name="l00048"></a>00048     <span class="keywordtype">int</span> result = 1;
+<a name="l00049"></a>00049     <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt;= value; i++){result *= i;}
+<a name="l00050"></a>00050     <span class="keywordflow">return</span> result;
+<a name="l00051"></a>00051   }
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053   <span class="comment">// Holds the matrix of possible facets</span>
+<a name="l00054"></a>00054   boost::numeric::ublas::matrix&lt;int&gt; facetList_; 
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 };
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="preprocessor">#endif //SYMMETRY_GENERATORS_METRICFACETLIST_H</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -113,7 +113,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 18 2011 17:36:02 for symmetry by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Dec 18 2011 19:31:45 for symmetry by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
