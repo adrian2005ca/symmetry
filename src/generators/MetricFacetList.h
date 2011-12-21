@@ -42,12 +42,9 @@ private:
   // Private default initializer
   MetricFacetList(){} 
 
-  // Simple lazy factorial computation function
-  // OVERFLOW if value > 12
-  int factorial(int value){
-    int result = 1;
-    for(int i = 1; i <= value; i++){result *= i;}
-    return result;
+  // Compute combinatoric formula for choosing 3 objects out of n objects
+  int nChoose3(int n){
+    return n * (n - 1) * (n - 2) / 6;
   }
 
   // Holds the matrix of possible facets

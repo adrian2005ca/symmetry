@@ -37,7 +37,7 @@ MetricFacetList::MetricFacetList(int nDimensions){
    * using the factorial function, it calculates the size of our matrix and
    * initializes it to 0
    */
-  int nFacets = 4 * factorial(nDimensions) / (6 * factorial(nDimensions - 3) );
+  int nFacets = 4 * nChoose3(nDimensions);
   facetList_ = zero_matrix<int>(nFacets, nDimensions);
   
   
