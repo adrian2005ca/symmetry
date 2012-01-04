@@ -63,66 +63,61 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="MetricFacetList_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &lt;boost/numeric/ublas/matrix.hpp&gt;</span>
 <a name="l00002"></a>00002 <span class="preprocessor">#include &lt;boost/numeric/ublas/matrix_proxy.hpp&gt;</span>
 <a name="l00003"></a>00003 
-<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;stdexcept&gt;</span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="MetricFacetList_8h.html">MetricFacetList.h</a>&quot;</span>
 <a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;<a class="code" href="MetricFacetList_8h.html">MetricFacetList.h</a>&quot;</span>
+<a name="l00006"></a>00006 <span class="keyword">using namespace </span>boost::numeric::ublas;<span class="comment">// used for boost matrices</span>
 <a name="l00007"></a>00007 
-<a name="l00008"></a>00008 <span class="keyword">using namespace </span>boost::numeric::ublas;<span class="comment">// used for boost matrices</span>
-<a name="l00009"></a>00009 
-<a name="l00024"></a><a class="code" href="classMetricFacetList.html#abaffaa45b44faa8ddfc0b186ebc991c4">00024</a> <a class="code" href="classMetricFacetList.html#abaffaa45b44faa8ddfc0b186ebc991c4">MetricFacetList::MetricFacetList</a>(<span class="keywordtype">int</span> nDimensions){
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026   <span class="comment">/*</span>
-<a name="l00027"></a>00027 <span class="comment">   * throw out any input that is less than MIN_DIMENSION(always 3) and</span>
-<a name="l00028"></a>00028 <span class="comment">   * MAX_DIMENSION which is by default is set to 12, see MetricFacetList.h.</span>
-<a name="l00029"></a>00029 <span class="comment">   * the reason 12 is chosen is because 12! will not overflow stored as int.</span>
-<a name="l00030"></a>00030 <span class="comment">   */</span>
-<a name="l00031"></a>00031   
-<a name="l00032"></a>00032   <span class="keywordflow">if</span>(nDimensions &lt; MIN_DIMENSION || nDimensions &gt; <a class="code" href="MetricFacetList_8h.html#a776947deb6cf27cbd4faf91e0d60ff49" title="12! will not overflow int">MAX_DIMENSION</a>){
-<a name="l00033"></a>00033     <span class="keywordflow">throw</span> std::out_of_range(<span class="stringliteral">&quot;Dimensions for the metric polytope are minimum&quot;</span> 
-<a name="l00034"></a>00034     <span class="stringliteral">&quot; 3 to MAX_DIMENSION(overflow)&quot;</span>);}
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036   <span class="comment">/*</span>
-<a name="l00037"></a>00037 <span class="comment">   * using the factorial function, it calculates the size of our matrix and</span>
-<a name="l00038"></a>00038 <span class="comment">   * initializes it to 0</span>
-<a name="l00039"></a>00039 <span class="comment">   */</span>
-<a name="l00040"></a>00040   <span class="keywordtype">int</span> nFacets = 4 * nChoose3(nDimensions);
-<a name="l00041"></a>00041   facetList_ = zero_matrix&lt;int&gt;(nFacets, nDimensions);
-<a name="l00042"></a>00042   
-<a name="l00043"></a>00043   
-<a name="l00044"></a>00044   <span class="keywordtype">int</span> index[3];<span class="comment">// stores position indices for nonzero elements in the matrix</span>
-<a name="l00045"></a>00045   <span class="keywordtype">int</span> currentFacet = 0;<span class="comment">// stores number of facets computed</span>
+<a name="l00023"></a><a class="code" href="classMetricFacetList.html#a01438424573a71b4173f6f0f9a8c483d">00023</a> <a class="code" href="classMetricFacetList.html#a01438424573a71b4173f6f0f9a8c483d">MetricFacetList::MetricFacetList</a>(<span class="keywordtype">int</span> n_dimensions){
+<a name="l00024"></a>00024   
+<a name="l00025"></a>00025   <span class="keywordflow">if</span>(n_dimensions &lt; k_min_dimension || n_dimensions &gt; k_max_dimension){
+<a name="l00026"></a>00026     n_dimensions = 0;
+<a name="l00027"></a>00027     <span class="keywordflow">return</span>;}
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029   <span class="comment">/*</span>
+<a name="l00030"></a>00030 <span class="comment">   * using the factorial function, it calculates the size of our matrix and</span>
+<a name="l00031"></a>00031 <span class="comment">   * initializes it to 0</span>
+<a name="l00032"></a>00032 <span class="comment">   */</span>
+<a name="l00033"></a>00033   <span class="keywordtype">int</span> n_facets = 4 * nChoose3(n_dimensions);
+<a name="l00034"></a>00034   facetlist_ = zero_matrix&lt;int&gt;(n_facets, n_dimensions);
+<a name="l00035"></a>00035   
+<a name="l00036"></a>00036   
+<a name="l00037"></a>00037   <span class="keywordtype">int</span> index[3];<span class="comment">// stores position indices for nonzero elements in the matrix</span>
+<a name="l00038"></a>00038   <span class="keywordtype">int</span> current_facet = 0;<span class="comment">// stores number of facets computed</span>
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040   <span class="comment">/*</span>
+<a name="l00041"></a>00041 <span class="comment">   * loops over all possible position choices in order, </span>
+<a name="l00042"></a>00042 <span class="comment">   * innermost loop is over possible -1 positions</span>
+<a name="l00043"></a>00043 <span class="comment">   * possible -1 positions include the NULL position and the already nonzero</span>
+<a name="l00044"></a>00044 <span class="comment">   * max one -1 per row  positions on the row</span>
+<a name="l00045"></a>00045 <span class="comment">   */</span>
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047   <span class="comment">/*</span>
-<a name="l00048"></a>00048 <span class="comment">   * loops over all possible position choices in order, </span>
-<a name="l00049"></a>00049 <span class="comment">   * innermost loop is over possible -1 positions</span>
-<a name="l00050"></a>00050 <span class="comment">   * possible -1 positions include the NULL position and the already nonzero </span>
-<a name="l00051"></a>00051 <span class="comment">   * max one -1 per row  positions on the row</span>
-<a name="l00052"></a>00052 <span class="comment">   */</span>
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054   <span class="keywordflow">for</span>(index[0] = 0; index[0] &lt; nDimensions - 2; ++index[0]){
-<a name="l00055"></a>00055     <span class="keywordflow">for</span>(index[1] = index[0] + 1; index[1] &lt; nDimensions - 1; ++index[1]){
-<a name="l00056"></a>00056       <span class="keywordflow">for</span>(index[2] = index[1] + 1; index[2] &lt; nDimensions; ++index[2]){
-<a name="l00057"></a>00057         <span class="keywordflow">for</span>(
-<a name="l00058"></a>00058             <span class="keywordtype">int</span> negativeOneChoice = 0; 
-<a name="l00059"></a>00059             negativeOneChoice &lt; 4; 
-<a name="l00060"></a>00060             ++negativeOneChoice){
-<a name="l00061"></a>00061                                         
-<a name="l00062"></a>00062           <span class="comment">//initializes the current row and increments the row count</span>
-<a name="l00063"></a>00063           matrix_row&lt;matrix&lt;int&gt; &gt; row(facetList_, currentFacet++);
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065           <span class="comment">//sets the elements at the computed nonzero positions to 1</span>
-<a name="l00066"></a>00066           row(index[0]) = 1;
-<a name="l00067"></a>00067                                         row(index[1]) = 1;
-<a name="l00068"></a>00068                                         row(index[2]) = 1;
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070           <span class="comment">//sets the element at the appropiate position to -1</span>
-<a name="l00071"></a>00071           <span class="keywordflow">if</span> ( negativeOneChoice &gt; 0 ){row(index[negativeOneChoice - 1]) = -1;}
-<a name="l00072"></a>00072         }
-<a name="l00073"></a>00073       }
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075   }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 }
+<a name="l00047"></a>00047   <span class="keywordflow">for</span>(index[0] = 0; index[0] &lt; n_dimensions - 2; ++index[0]){
+<a name="l00048"></a>00048     <span class="keywordflow">for</span>(index[1] = index[0] + 1; index[1] &lt; n_dimensions - 1; ++index[1]){
+<a name="l00049"></a>00049       <span class="keywordflow">for</span>(index[2] = index[1] + 1; index[2] &lt; n_dimensions; ++index[2]){
+<a name="l00050"></a>00050         <span class="keywordflow">for</span>(
+<a name="l00051"></a>00051             <span class="keywordtype">int</span> negative_choice = 0;  <span class="comment">// start with no -1s</span>
+<a name="l00052"></a>00052             negative_choice &lt; 4;      <span class="comment">//move up through the possible -1 </span>
+<a name="l00053"></a>00053             ++negative_choice){       <span class="comment">//positions</span>
+<a name="l00054"></a>00054                                         
+<a name="l00055"></a>00055           <span class="comment">//initializes the current row</span>
+<a name="l00056"></a>00056           matrix_row&lt;matrix&lt;int&gt; &gt; row(facetlist_, current_facet);
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058           <span class="comment">//sets the elements at the computed nonzero positions to 1</span>
+<a name="l00059"></a>00059           row(index[0]) = 1;
+<a name="l00060"></a>00060                                         row(index[1]) = 1;
+<a name="l00061"></a>00061                                         row(index[2]) = 1;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063           <span class="comment">//sets the element at the appropiate position to -1</span>
+<a name="l00064"></a>00064           <span class="keywordflow">if</span> ( negative_choice &gt; 0 ){row(index[negative_choice - 1]) = -1;}
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066           <span class="comment">//increments the row count</span>
+<a name="l00067"></a>00067           current_facet++;
+<a name="l00068"></a>00068         }
+<a name="l00069"></a>00069       }
+<a name="l00070"></a>00070     }
+<a name="l00071"></a>00071   }
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 }
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -130,7 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -139,7 +134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Dec 21 2011 14:53:44 for symmetry by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 3 2012 23:00:39 for symmetry by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

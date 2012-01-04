@@ -65,24 +65,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="MetricFacetList" -->
-<p>Generator class for the metric polytope.Generates a matrix containing a facet list for the polytope of n dimensions and can provide a pointer to the matrix.  
+<p>Generator class for the metric polytope.  
  <a href="classMetricFacetList.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetricFacetList.html#abaffaa45b44faa8ddfc0b186ebc991c4">MetricFacetList</a> (int nDimensions)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetricFacetList.html#a01438424573a71b4173f6f0f9a8c483d">MetricFacetList</a> (int n_dimensions)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">boost::numeric::ublas::matrix<br class="typebreak"/>
-&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetricFacetList.html#aa750be5e716d3e2475b00850e98cb709">getPointer</a> ()</td></tr>
+&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetricFacetList.html#ae3ad6909aa8956d58908057d5cd77fdd">get_facetlist</a> ()</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Generator class for the metric polytope.</p>
-<p>Generates a matrix containing a facet list for the polytope of n dimensions and can provide a pointer to the matrix. </p>
-
-<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00019">19</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
+<div class="textblock"><p>Generator class for the metric polytope. </p>
+<p>Generates a matrix containing a facet list for the polytope of n dimensions and can provide a pointer to the matrix.</p>
+<p>Sample usage: </p>
+<div class="fragment"><pre class="fragment"> <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>boost::numeric::ublas;
+ 
+ <a class="code" href="classMetricFacetList.html" title="Generator class for the metric polytope.">MetricFacetList</a> m(4);
+ matrix&lt;int&gt; computed_matrix = *m.get_facetlist();
+ cout &lt;&lt; computed_matrix;
+</pre></div> 
+<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00024">24</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="abaffaa45b44faa8ddfc0b186ebc991c4"></a><!-- doxytag: member="MetricFacetList::MetricFacetList" ref="abaffaa45b44faa8ddfc0b186ebc991c4" args="(int nDimensions)" -->
+<a class="anchor" id="a01438424573a71b4173f6f0f9a8c483d"></a><!-- doxytag: member="MetricFacetList::MetricFacetList" ref="a01438424573a71b4173f6f0f9a8c483d" args="(int n_dimensions)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -90,70 +97,63 @@ Public Member Functions</h2></td></tr>
           <td class="memname">MetricFacetList::MetricFacetList </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nDimensions</em></td><td>)</td>
+          <td class="paramname"><em>n_dimensions</em></td><td>)</td>
           <td><code> [explicit]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Used to initialize boost matrix to contain all possible facets.</p>
-<p><a class="el" href="classMetricFacetList.html#abaffaa45b44faa8ddfc0b186ebc991c4">MetricFacetList(int nDimensions)</a> </p>
+<p>Initializes the member boost matrix to contain all possible facets of the metric polytope.</p>
+<p><a class="el" href="classMetricFacetList.html#a01438424573a71b4173f6f0f9a8c483d">MetricFacetList(int n_dimensions)</a> </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">nDimensions</td><td>[int] number of points to be chosen from(dimensions) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl><dt><b>Exceptions:</b></dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>Dimensions for the metric polytope are MIN_DIMESION (3) to <a class="el" href="MetricFacetList_8h.html#a776947deb6cf27cbd4faf91e0d60ff49" title="12! will not overflow int">MAX_DIMENSION(overflow)</a>. Any input outside the specified range will cause the object initialization to throw this exeption.</td></tr>
+    <tr><td class="paramname">n_dimensions</td><td>[int] number of points to be chosen from(dimensions)</td></tr>
   </table>
   </dd>
 </dl>
 <p>Only valid constructor, creates and stores a boost matrix with every possible facet in the metric polytope. Each row is a possible facet in compact form.</p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMetricFacetList.html#aa750be5e716d3e2475b00850e98cb709">getPointer()</a> </dd></dl>
+<p>Will not create the matrix if the dimension given: </p>
+<ul>
+<li><code>is</code> too small: the metric polytope has at least 3 dimensions. </li>
+<li><code>is</code> too big: input values over 100 will overflow the containers used.</li>
+</ul>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMetricFacetList.html#ae3ad6909aa8956d58908057d5cd77fdd">get_facetlist()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="MetricFacetList_8cpp_source.html#l00024">24</a> of file <a class="el" href="MetricFacetList_8cpp_source.html">MetricFacetList.cpp</a>.</p>
-<div class="fragment"><pre class="fragment">                                               {
-
-  <span class="comment">/*</span>
-<span class="comment">   * throw out any input that is less than MIN_DIMENSION(always 3) and</span>
-<span class="comment">   * MAX_DIMENSION which is by default is set to 12, see MetricFacetList.h.</span>
-<span class="comment">   * the reason 12 is chosen is because 12! will not overflow stored as int.</span>
-<span class="comment">   */</span>
+<p>Definition at line <a class="el" href="MetricFacetList_8cpp_source.html#l00023">23</a> of file <a class="el" href="MetricFacetList_8cpp_source.html">MetricFacetList.cpp</a>.</p>
+<div class="fragment"><pre class="fragment">                                                {
   
-  <span class="keywordflow">if</span>(nDimensions &lt; MIN_DIMENSION || nDimensions &gt; <a class="code" href="MetricFacetList_8h.html#a776947deb6cf27cbd4faf91e0d60ff49" title="12! will not overflow int">MAX_DIMENSION</a>){
-    <span class="keywordflow">throw</span> std::out_of_range(<span class="stringliteral">&quot;Dimensions for the metric polytope are minimum&quot;</span> 
-    <span class="stringliteral">&quot; 3 to MAX_DIMENSION(overflow)&quot;</span>);}
+  <span class="keywordflow">if</span>(n_dimensions &lt; k_min_dimension || n_dimensions &gt; k_max_dimension){
+    n_dimensions = 0;
+    <span class="keywordflow">return</span>;}
 
   <span class="comment">/*</span>
 <span class="comment">   * using the factorial function, it calculates the size of our matrix and</span>
 <span class="comment">   * initializes it to 0</span>
 <span class="comment">   */</span>
-  <span class="keywordtype">int</span> nFacets = 4 * nChoose3(nDimensions);
-  facetList_ = zero_matrix&lt;int&gt;(nFacets, nDimensions);
+  <span class="keywordtype">int</span> n_facets = 4 * nChoose3(n_dimensions);
+  facetlist_ = zero_matrix&lt;int&gt;(n_facets, n_dimensions);
   
   
   <span class="keywordtype">int</span> index[3];<span class="comment">// stores position indices for nonzero elements in the matrix</span>
-  <span class="keywordtype">int</span> currentFacet = 0;<span class="comment">// stores number of facets computed</span>
+  <span class="keywordtype">int</span> current_facet = 0;<span class="comment">// stores number of facets computed</span>
 
   <span class="comment">/*</span>
 <span class="comment">   * loops over all possible position choices in order, </span>
 <span class="comment">   * innermost loop is over possible -1 positions</span>
-<span class="comment">   * possible -1 positions include the NULL position and the already nonzero </span>
+<span class="comment">   * possible -1 positions include the NULL position and the already nonzero</span>
 <span class="comment">   * max one -1 per row  positions on the row</span>
 <span class="comment">   */</span>
 
-  <span class="keywordflow">for</span>(index[0] = 0; index[0] &lt; nDimensions - 2; ++index[0]){
-    <span class="keywordflow">for</span>(index[1] = index[0] + 1; index[1] &lt; nDimensions - 1; ++index[1]){
-      <span class="keywordflow">for</span>(index[2] = index[1] + 1; index[2] &lt; nDimensions; ++index[2]){
+  <span class="keywordflow">for</span>(index[0] = 0; index[0] &lt; n_dimensions - 2; ++index[0]){
+    <span class="keywordflow">for</span>(index[1] = index[0] + 1; index[1] &lt; n_dimensions - 1; ++index[1]){
+      <span class="keywordflow">for</span>(index[2] = index[1] + 1; index[2] &lt; n_dimensions; ++index[2]){
         <span class="keywordflow">for</span>(
-            <span class="keywordtype">int</span> negativeOneChoice = 0; 
-            negativeOneChoice &lt; 4; 
-            ++negativeOneChoice){
+            <span class="keywordtype">int</span> negative_choice = 0;  <span class="comment">// start with no -1s</span>
+            negative_choice &lt; 4;      <span class="comment">//move up through the possible -1 </span>
+            ++negative_choice){       <span class="comment">//positions</span>
                                         
-          <span class="comment">//initializes the current row and increments the row count</span>
-          matrix_row&lt;matrix&lt;int&gt; &gt; row(facetList_, currentFacet++);
+          <span class="comment">//initializes the current row</span>
+          matrix_row&lt;matrix&lt;int&gt; &gt; row(facetlist_, current_facet);
 
           <span class="comment">//sets the elements at the computed nonzero positions to 1</span>
           row(index[0]) = 1;
@@ -161,7 +161,10 @@ Public Member Functions</h2></td></tr>
                                         row(index[2]) = 1;
 
           <span class="comment">//sets the element at the appropiate position to -1</span>
-          <span class="keywordflow">if</span> ( negativeOneChoice &gt; 0 ){row(index[negativeOneChoice - 1]) = -1;}
+          <span class="keywordflow">if</span> ( negative_choice &gt; 0 ){row(index[negative_choice - 1]) = -1;}
+
+          <span class="comment">//increments the row count</span>
+          current_facet++;
         }
       }
     }
@@ -172,12 +175,12 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aa750be5e716d3e2475b00850e98cb709"></a><!-- doxytag: member="MetricFacetList::getPointer" ref="aa750be5e716d3e2475b00850e98cb709" args="()" -->
+<a class="anchor" id="ae3ad6909aa8956d58908057d5cd77fdd"></a><!-- doxytag: member="MetricFacetList::get_facetlist" ref="ae3ad6909aa8956d58908057d5cd77fdd" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boost::numeric::ublas::matrix&lt;int&gt;* MetricFacetList::getPointer </td>
+          <td class="memname">boost::numeric::ublas::matrix&lt;int&gt;* MetricFacetList::get_facetlist </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [inline]</code></td>
@@ -185,14 +188,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Returns a POINTER to the the boost matrix that is created at initialization.</p>
-<p><a class="el" href="classMetricFacetList.html#aa750be5e716d3e2475b00850e98cb709">getPointer()</a> </p>
+<p><a class="el" href="classMetricFacetList.html#ae3ad6909aa8956d58908057d5cd77fdd">get_facetlist()</a></p>
+<p>Returns a pointer to the the boost matrix that is created at initialization.</p>
+<p>WARNING: may cause dangling pointer, do not use past object expiration!</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>[ boost::numeric::ublas::matrix&lt;int&gt;*] Pointer to facet matrix</dd></dl>
-<p>WARNING: may cause dangling pointer, do not use past expiration!</p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMetricFacetList.html#abaffaa45b44faa8ddfc0b186ebc991c4">MetricFacetList(int nDimensions)</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMetricFacetList.html#a01438424573a71b4173f6f0f9a8c483d">MetricFacetList(int n_dimensions)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00039">39</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
-<div class="fragment"><pre class="fragment">{<span class="keywordflow">return</span> &amp;facetList_;}
+<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00046">46</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
+<div class="fragment"><pre class="fragment">{<span class="keywordflow">return</span> &amp;facetlist_;}
 </pre></div>
 </div>
 </div>
@@ -206,7 +209,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -215,7 +218,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Dec 21 2011 14:53:44 for symmetry by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 3 2012 23:00:39 for symmetry by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
