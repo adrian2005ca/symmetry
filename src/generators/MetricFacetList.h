@@ -1,55 +1,66 @@
 #ifndef SYMMETRY_GENERATORS_METRICFACETLIST_H
 #define SYMMETRY_GENERATORS_METRICFACETLIST_H
 
-#define MIN_DIMENSION 3 ///< metric polytope minimum
-#define MAX_DIMENSION 12 ///< 12! will not overflow int
-
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/matrix_proxy.hpp>
 
-#include <stdexcept>
-
 /**
- *  @brief Generator class for the metric polytope.
- *  @class MetricFacetList
+ * @class MetricFacetList
+ * @brief Generator class for the metric polytope.
  *
- *  Generates a matrix containing a facet list for the polytope of n dimensions
- *  and can provide a pointer to the matrix.
- */
+ * Generates a matrix containing a facet list for the polytope of n dimensions
+ * and can provide a pointer to the matrix.
+ *
+ * Sample usage:
+ * @code
+ * using namespace std;
+ * using namespace boost::numeric::ublas;
+ * 
+ * MetricFacetList m(4);
+ * matrix<int> computed_matrix = *m.get_facetlist();
+ * cout << computed_matrix;
+ * @endcode
+ */ 
 class MetricFacetList
 {
 public:
 
   /**
-   *  Used to initialize boost matrix to contain all possible facets.
+   * Initializes the member boost matrix to contain all possible facets of the
+   * metric polytope.
    */
-  explicit MetricFacetList(int nDimensions);
+  explicit MetricFacetList(int n_dimensions);
 
   /**
-   *  Returns a POINTER to the the boost matrix that 
-   *  is created at initialization.
+   * @method  get_facetlist()
+   *  
+   * Returns a pointer to the the boost matrix that 
+   * is created at initialization.
    *
-   *  @method  getPointer()
-   *  @return  [ boost::numeric::ublas::matrix<int>*]  Pointer to facet matrix
+   * WARNING: may cause dangling pointer, do not use past object expiration!
+   * 
+   * @return  [ boost::numeric::ublas::matrix<int>*]  Pointer to facet matrix
    *
-   *  WARNING: may cause dangling pointer, do not use past expiration!
-   *
-   *  @see  MetricFacetList(int nDimensions)
+   * @see  MetricFacetList(int n_dimensions)
    */
-  boost::numeric::ublas::matrix<int>* getPointer(){return &facetList_;}
+  boost::numeric::ublas::matrix<int>* get_facetlist(){return &facetlist_;}
 
 private:
-  // Private default initializer
+  // The metric polytope has at least dimension 3.
+  static const int k_min_dimension = 3;
+
+  // To avoid integer overflow, the maximum dimension for creating the
+  // metric polytope is set here.
+  static const int k_max_dimension = 100;
+
+  // Private default initializer is empty.
   MetricFacetList(){} 
 
-  // Compute combinatoric formula for choosing 3 objects out of n objects
-  int nChoose3(int n){
-    return n * (n - 1) * (n - 2) / 6;
-  }
+  // Computes the combinatoric formula for choosing 3 objects out of n objects.
+  int nChoose3(int n){return n * (n - 1) * (n - 2) / 6;}
 
-  // Holds the matrix of possible facets
-  boost::numeric::ublas::matrix<int> facetList_; 
-
+  // Holds the matrix of possible facets.
+  boost::numeric::ublas::matrix<int> facetlist_; 
 };
 
 #endif //SYMMETRY_GENERATORS_METRICFACETLIST_H
