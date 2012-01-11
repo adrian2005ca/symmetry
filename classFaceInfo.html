@@ -58,8 +58,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
 <div class="title">FaceInfo Class Reference</div>  </div>
 </div>
@@ -68,118 +66,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Container class for all information regarding a face.  
  <a href="classFaceInfo.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="FaceInfo_8h_source.html">FaceInfo.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="FaceData_8h_source.html">FaceData.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFaceInfo.html#aaffd1ea3649f3615951ba1afed75c78e">FaceInfo</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFaceInfo.html#a4b742921e49bcc64259cb4cd5324526e">setBin</a> (int bin)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFaceInfo.html#a07f2652a548e628315a9fd5cfdf63541">getBin</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFaceInfo.html#ab7a352de77dc16ad02549571d1463ae6">test</a> ()</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Container class for all information regarding a face. </p>
 <p>Provides storage and some useful methods for faces. </p>
-
-<p>Definition at line <a class="el" href="FaceInfo_8h_source.html#l00019">19</a> of file <a class="el" href="FaceInfo_8h_source.html">FaceInfo.h</a>.</p>
-</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aaffd1ea3649f3615951ba1afed75c78e"></a><!-- doxytag: member="FaceInfo::FaceInfo" ref="aaffd1ea3649f3615951ba1afed75c78e" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">FaceInfo::FaceInfo </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Default constructor initializes class variables.</p>
-<p><a class="el" href="classFaceInfo.html#aaffd1ea3649f3615951ba1afed75c78e">FaceInfo()</a> </p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFaceInfo.html#a4b742921e49bcc64259cb4cd5324526e">setBin()</a>, <a class="el" href="classFaceInfo.html#a07f2652a548e628315a9fd5cfdf63541">getBin()</a> </dd></dl>
-
-<p>Definition at line <a class="el" href="FaceInfo_8h_source.html#l00029">29</a> of file <a class="el" href="FaceInfo_8h_source.html">FaceInfo.h</a>.</p>
-<div class="fragment"><pre class="fragment">{<a class="code" href="classFaceInfo.html#a4b742921e49bcc64259cb4cd5324526e">setBin</a>(1);}
-</pre></div>
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a07f2652a548e628315a9fd5cfdf63541"></a><!-- doxytag: member="FaceInfo::getBin" ref="a07f2652a548e628315a9fd5cfdf63541" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int FaceInfo::getBin </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Accessor method for outputting the bin of the face to an integer.</p>
-<p><a class="el" href="classFaceInfo.html#a07f2652a548e628315a9fd5cfdf63541">getBin()</a> </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>[int] the bin of the face object </dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFaceInfo.html#a4b742921e49bcc64259cb4cd5324526e">setBin(int bin)</a> </dd></dl>
-
-<p>Definition at line <a class="el" href="FaceInfo_8h_source.html#l00050">50</a> of file <a class="el" href="FaceInfo_8h_source.html">FaceInfo.h</a>.</p>
-<div class="fragment"><pre class="fragment">{<span class="keywordflow">return</span> bin_;}
-</pre></div>
-</div>
-</div>
-<a class="anchor" id="a4b742921e49bcc64259cb4cd5324526e"></a><!-- doxytag: member="FaceInfo::setBin" ref="a4b742921e49bcc64259cb4cd5324526e" args="(int bin)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FaceInfo::setBin </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>bin</em></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Mutator method for setting the grouping of the face.</p>
-<p><a class="el" href="classFaceInfo.html#a4b742921e49bcc64259cb4cd5324526e">setBin(int bin)</a> </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bin</td><td>[int] an integer representing the grouping of a face</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Faces can be split up into bins based on invariances. This allows for less complexity when doing pairwise comparisons. </p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classFaceInfo.html#a07f2652a548e628315a9fd5cfdf63541">getBin()</a> </dd></dl>
-
-<p>Definition at line <a class="el" href="FaceInfo_8h_source.html#l00041">41</a> of file <a class="el" href="FaceInfo_8h_source.html">FaceInfo.h</a>.</p>
-<div class="fragment"><pre class="fragment">{bin_ = bin;}
-</pre></div>
-</div>
-</div>
-<a class="anchor" id="ab7a352de77dc16ad02549571d1463ae6"></a><!-- doxytag: member="FaceInfo::test" ref="ab7a352de77dc16ad02549571d1463ae6" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FaceInfo::test </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="FaceInfo_8h_source.html#l00053">53</a> of file <a class="el" href="FaceInfo_8h_source.html">FaceInfo.h</a>.</p>
-<div class="fragment"><pre class="fragment">{boost::numeric::ublas::matrix&lt;int&gt; m;}
-</pre></div>
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/adrian/Projects/symmetry/src/containers/<a class="el" href="FaceInfo_8h_source.html">FaceInfo.h</a></li>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/adrian/Projects/symmetry/src/containers/<a class="el" href="FaceData_8h_source.html">FaceData.h</a></li>
 </ul>
 </div>
 <!-- window showing the filter options -->
@@ -196,7 +90,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 3 2012 23:00:39 for symmetry by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 10 2012 20:43:55 for symmetry by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

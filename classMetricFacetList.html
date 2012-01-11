@@ -120,11 +120,9 @@ Public Member Functions</h2></td></tr>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMetricFacetList.html#ae3ad6909aa8956d58908057d5cd77fdd">get_facetlist()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="MetricFacetList_8cpp_source.html#l00023">23</a> of file <a class="el" href="MetricFacetList_8cpp_source.html">MetricFacetList.cpp</a>.</p>
-<div class="fragment"><pre class="fragment">                                                {
-  
-  <span class="keywordflow">if</span>(n_dimensions &lt; k_min_dimension || n_dimensions &gt; k_max_dimension){
-    n_dimensions = 0;
-    <span class="keywordflow">return</span>;}
+<div class="fragment"><pre class="fragment">                                                 {
+  <span class="keywordflow">if</span> (n_dimensions &lt; k_min_dimension || n_dimensions &gt; k_max_dimension) {
+    n_dimensions = 0;}
 
   <span class="comment">/*</span>
 <span class="comment">   * using the factorial function, it calculates the size of our matrix and</span>
@@ -132,10 +130,10 @@ Public Member Functions</h2></td></tr>
 <span class="comment">   */</span>
   <span class="keywordtype">int</span> n_facets = 4 * nChoose3(n_dimensions);
   facetlist_ = zero_matrix&lt;int&gt;(n_facets, n_dimensions);
-  
-  
-  <span class="keywordtype">int</span> index[3];<span class="comment">// stores position indices for nonzero elements in the matrix</span>
-  <span class="keywordtype">int</span> current_facet = 0;<span class="comment">// stores number of facets computed</span>
+
+
+  <span class="keywordtype">int</span> index[3];           <span class="comment">// stores position indices for nonzero elements</span>
+  <span class="keywordtype">int</span> current_facet = 0;  <span class="comment">// stores number of facets computed</span>
 
   <span class="comment">/*</span>
 <span class="comment">   * loops over all possible position choices in order, </span>
@@ -144,32 +142,31 @@ Public Member Functions</h2></td></tr>
 <span class="comment">   * max one -1 per row  positions on the row</span>
 <span class="comment">   */</span>
 
-  <span class="keywordflow">for</span>(index[0] = 0; index[0] &lt; n_dimensions - 2; ++index[0]){
-    <span class="keywordflow">for</span>(index[1] = index[0] + 1; index[1] &lt; n_dimensions - 1; ++index[1]){
-      <span class="keywordflow">for</span>(index[2] = index[1] + 1; index[2] &lt; n_dimensions; ++index[2]){
-        <span class="keywordflow">for</span>(
-            <span class="keywordtype">int</span> negative_choice = 0;  <span class="comment">// start with no -1s</span>
-            negative_choice &lt; 4;      <span class="comment">//move up through the possible -1 </span>
-            ++negative_choice){       <span class="comment">//positions</span>
-                                        
-          <span class="comment">//initializes the current row</span>
+  <span class="keywordflow">for</span> (index[0] = 0; index[0] &lt; n_dimensions - 2; ++index[0]) {
+    <span class="keywordflow">for</span> (index[1] = index[0] + 1; index[1] &lt; n_dimensions - 1; ++index[1]) {
+      <span class="keywordflow">for</span> (index[2] = index[1] + 1; index[2] &lt; n_dimensions; ++index[2]) {
+        <span class="keywordflow">for</span> (
+            <span class="keywordtype">int</span> negative_choice = 0;  <span class="comment">// start with no -1s //</span>
+            negative_choice &lt; 4;    <span class="comment">// move up through the possible -1   //</span>
+            ++negative_choice) {    <span class="comment">// positions                         //</span>
+
+          <span class="comment">// initializes the current row</span>
           matrix_row&lt;matrix&lt;int&gt; &gt; row(facetlist_, current_facet);
 
-          <span class="comment">//sets the elements at the computed nonzero positions to 1</span>
+          <span class="comment">// sets the elements at the computed nonzero positions to 1</span>
           row(index[0]) = 1;
-                                        row(index[1]) = 1;
-                                        row(index[2]) = 1;
+          row(index[1]) = 1;
+          row(index[2]) = 1;
 
-          <span class="comment">//sets the element at the appropiate position to -1</span>
-          <span class="keywordflow">if</span> ( negative_choice &gt; 0 ){row(index[negative_choice - 1]) = -1;}
+          <span class="comment">// sets the element at the appropiate position to -1</span>
+          <span class="keywordflow">if</span> ( negative_choice &gt; 0 ) {row(index[negative_choice - 1]) = -1;}
 
-          <span class="comment">//increments the row count</span>
+          <span class="comment">// increments the row count</span>
           current_facet++;
         }
       }
     }
   }
-
 }
 </pre></div>
 </div>
@@ -194,7 +191,7 @@ Public Member Functions</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>[ boost::numeric::ublas::matrix&lt;int&gt;*] Pointer to facet matrix</dd></dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classMetricFacetList.html#a01438424573a71b4173f6f0f9a8c483d">MetricFacetList(int n_dimensions)</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00046">46</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
+<p>Definition at line <a class="el" href="MetricFacetList_8h_source.html#l00044">44</a> of file <a class="el" href="MetricFacetList_8h_source.html">MetricFacetList.h</a>.</p>
 <div class="fragment"><pre class="fragment">{<span class="keywordflow">return</span> &amp;facetlist_;}
 </pre></div>
 </div>
@@ -218,7 +215,7 @@ Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 3 2012 23:00:39 for symmetry by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 10 2012 20:43:55 for symmetry by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
