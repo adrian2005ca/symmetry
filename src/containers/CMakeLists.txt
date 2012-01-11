@@ -1,1 +1,1 @@
-add_library(containers FaceInfo.cpp FaceInfoList.cpp)
+add_library(containers FaceData.cpp FacesDataList.cpp)

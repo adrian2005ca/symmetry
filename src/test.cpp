@@ -1,5 +1,5 @@
 // A simple program to test cmake
-//testing commits with this comment
+// testing commits with this comment
 #include <stdio.h>
 #include <iostream>
 
@@ -20,12 +20,12 @@
 
 #include "MetricFacetList.h"
 
-#include "FaceInfo.h"
-#include "FaceInfoList.h"
+#include "FaceData.h"
+#include "FacesDataList.h"
 
 using namespace std;
 
-int main (int argc, char* argv[]){
+int main (int argc, char* argv[]) {
   cout << "hello world!! I'm working!\n";
   return 0;
-	}
+}
