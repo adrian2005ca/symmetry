@@ -12,7 +12,7 @@
 /**
  * @brief Container class for all information regarding a face.
  *
- * @class FaceInfo
+ * @class FaceData
  *
  * Provides storage and some useful methods for faces.
  */
@@ -21,7 +21,7 @@ class   FaceData {
     /**
      * Default constructor initializes class variables.
      *
-     * @method  FaceInfo()
+     * @method  FaceData()
      * @see  setBin(), getBin()
      */
     FaceData() {setBin(1);}
